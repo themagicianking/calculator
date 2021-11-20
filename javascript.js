@@ -153,3 +153,9 @@ let calculate = function () {
 }
 
 document.getElementById("equals").addEventListener("click", calculate);
+
+let clearAll = function () {
+    content.textContent = "";
+}
+
+document.getElementById("clear").addEventListener("click", clearAll);
