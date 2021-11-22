@@ -68,7 +68,7 @@ const operatorKeys = document.querySelectorAll(".operator");
 
 function handleOperator(event) {
     hasNewOperator = "yes";
-    if (n1 === "clear") {
+    if (n1 === "clear" || operator === "clear") {
         n1 = parseInt(content.textContent);
         operator = event.target.value;
     }
@@ -86,3 +86,16 @@ operatorKeys.forEach(
         key.addEventListener("click", handleOperator);
     }
 );
+
+const equalsKey = document.getElementById("equals");
+
+let handleEquals = function () {
+    n2 = parseInt(content.textContent);
+    operate(operator, n1, n2);
+    content.textContent = total;
+    console.log(operator, n1, n2);
+    operator = "clear";
+    n2 = "clear";
+}
+
+equalsKey.addEventListener("click", handleEquals);
