@@ -3,6 +3,8 @@ let n1 = "clear";
 let n2 = "clear";
 let operator = "clear";
 let hasNewOperator = "yes";
+let newEquation = "yes";
+let num;
 
 let add = function (n1, n2) {
     total = n1 += n2;
@@ -45,6 +47,18 @@ let operate = function (operator, n1, n2) {
 const display = document.querySelector("#display");
 const content = document.querySelector("#content");
 
+let decimalRound = function () {
+    let lengthOfNum = (num + "").length;
+    console.log(lengthOfNum);
+    if (lengthOfNum > 10) {
+        console.log(num);
+        content.textContent = num.toFixed(8);
+    }
+    else {
+        content.textContent = num;
+    }
+}
+
 const digitKeys = document.querySelectorAll(".digit");
 
 function handleDigit(event) {
@@ -76,7 +90,8 @@ function handleOperator(event) {
         n2 = parseInt(content.textContent);
         operate(operator, n1, n2);
         operator = event.target.value;
-        content.textContent = total;
+        num = total;
+        decimalRound(num);
         n1 = total;
     }
 }
@@ -90,12 +105,30 @@ operatorKeys.forEach(
 const equalsKey = document.getElementById("equals");
 
 let handleEquals = function () {
+    if ((n1 === "clear" && n2 === "clear") || operator === "clear") {
+        n1 = content.textContent;
+    }
+    else {
     n2 = parseInt(content.textContent);
     operate(operator, n1, n2);
-    content.textContent = total;
-    console.log(operator, n1, n2);
+    num = total;
+    console.log(num);
+    decimalRound(num);
     operator = "clear";
     n2 = "clear";
+    }
 }
 
 equalsKey.addEventListener("click", handleEquals);
+
+const clearKey = document.getElementById("clear");
+
+let handleClear = function () {
+    n1 = "clear";
+    n2 = "clear";
+    operator = "clear";
+    hasNewOperator = "yes";
+    content.textContent = "";
+}
+
+clearKey.addEventListener("click", handleClear);
