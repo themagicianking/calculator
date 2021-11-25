@@ -23,7 +23,7 @@ let multiply = function (n1, n2) {
 
 let divide = function (n1, n2) {
     total = n1 /= n2;
-    if (total === Infinity) {
+    if (total === Infinity || total === -Infinity) {
         total = "Nice try.";
     }
     return total;
